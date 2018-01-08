@@ -1,0 +1,44 @@
+page-intro {
+    .intro {
+        background-color: #1abc9c;
+    }
+    .intro h1 {
+        color: #fff;
+        font-size: 3.5em;
+        font-weight: 200;
+        margin: 10px 0 0 0;
+        font-family: 'Lobster', cursive;
+    }
+    .spinner {
+        text-align: center;
+        color: #fff !important;
+        letter-spacing: 1px;
+        font-weight: 400;
+        stroke: #fff !important;
+        fill: #fff !important;
+    }
+    .spinner-splash {
+        position: absolute;
+    }
+    .title {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .splash-screen {
+        position: absolute;
+        top: 35%;
+        color: #fff;
+        width: 90%;
+    }
+    ion-spinner {
+        * {
+            stroke: #fff;
+        }
+
+        &.spinner-circles circle,
+        &.spinner-bubbles circle,
+        &.spinner-dots circle {
+            fill: #fff;
+        }
+    }
+}
