@@ -1,18 +1,54 @@
-<!--
-  Generated template for the LoginPage page.
+<ion-content>
+	<div class="login-header content-padding-extra">
+		<h1>GlaucApp</h1>
+	</div>
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>login</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
+	<div class="content-padding-extra">
+		<form [formGroup]="formLogin" novalidate>
+			<ion-item class="item-input input-control">
+				<ion-input type="text" formControlName="email" placeholder="Seu e-mail"></ion-input>
+			</ion-item>
+			<ion-item class="item-input input-control">
+				<ion-input type="password" formControlName="password" placeholder="Sua senha"></ion-input>
+			</ion-item>
+			<div class="col-67 text-12 text-center text-light padding-top padding-bottom absolute">
+				<a (click)="esqueceuSenha()"> Esqueceu a senha?</a>
+			</div>
+			<div class="pull-right clearfix">
+				<button type="submit" class="button button-outline button-light item-icon-right"
+					[disabled]="!formLogin.valid"
+					[class.button-royal]="formLogin.valid"
+					(click)="login(formLogin.value)">
+					Entrar
+				</button>
+			</div>
+		</form>
+		<div class="row padding-top padding-top-bottom">
+			<div class="col-33">
+				<hr>
+			</div>
+			<div class="col-33 text-center text-uppercase text-divisor">
+				ou
+			</div>
+			<div class="col-33">
+				<hr>
+			</div>
+		</div>
+		<div class="social-buttons">
+			<div class="facebook-button text-center" (click)="loginFacebook()">
+				<ion-icon name="logo-facebook"></ion-icon> Login com o Facebook
+			</div>
+			<div class="googleplus-button text-center" (click)="loginGoogle()">
+				<ion-icon name="logo-google"></ion-icon> Login com o Google
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-67 text-12 text-center text-light border-div padding-top padding-bottom">
+				Ainda não se cadastrou?
+			</div>
+			<div class="col-33 text-12 text-right padding-top padding-bottom">
+				<a (click)="signup()">Cadastre-se</a>
+			</div>
+		</div>
+	</div>
 </ion-content>

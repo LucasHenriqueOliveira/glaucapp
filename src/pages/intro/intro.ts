@@ -17,7 +17,7 @@ import { LoginPage } from '../login/login';
 export class IntroPage {
 
 	constructor(public navCtrl: NavController, public navParams: NavParams) {
-		// this.navCtrl.push(LoginPage);
+		this.navCtrl.push(LoginPage);
 	}
 
 	ionViewDidLoad() {
