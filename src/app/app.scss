@@ -337,9 +337,9 @@ hr {
 }
 
 .bar-royal {
-    border-color: #042C41;
-    background-color: #042C41;
-    background-image: linear-gradient(0deg, #042C41, #042C41 50%, transparent 50%);
+    border-color: #1abc9c;
+    background-color: #1abc9c;
+    background-image: linear-gradient(0deg, #1abc9c, #1abc9c 50%, transparent 50%);
     color: #fff
 }
 
@@ -348,7 +348,7 @@ hr {
 }
 
 .bar-royal.bar-footer {
-    background-image: linear-gradient(180deg, #042C41, #042C41 50%, transparent 50%)
+    background-image: linear-gradient(180deg, #1abc9c, #1abc9c 50%, transparent 50%)
 }
 
 .bar-dark {
@@ -359,8 +359,8 @@ hr {
 }
 
 .bar-royal .button {
-    border-color: #042C41;
-    background-color: #042C41;
+    border-color: #1abc9c;
+    background-color: #1abc9c;
     color: #fff
 }
 
@@ -371,8 +371,8 @@ hr {
 
 .bar-royal .button.activated,
 .bar-royal .button.active {
-    border-color: #042C41;
-    background-color: #042C41
+    border-color: #1abc9c;
+    background-color: #1abc9c
 }
 
 .bar-royal .button.button-clear {
@@ -389,7 +389,7 @@ hr {
 }
 
 .screen-header {
-    background: #042C41;
+    background: #1abc9c;
     padding-top: 0;
     padding-bottom: 20px;
     margin-bottom: 20px
@@ -447,7 +447,7 @@ hr {
 }
 
 .menu {
-    background: #042C41;
+    background: #1abc9c;
 }
 
 .menu-header h1 small {
@@ -457,7 +457,7 @@ hr {
 }
 
 .menu-header {
-    background: #042C41;
+    background: #1abc9c;
     padding: 50px 20px 0;
     margin-bottom: 150px;
 }
@@ -483,7 +483,7 @@ hr {
 
 .list .item,
 .list .item-content {
-    background: #042C41;
+    background: #1abc9c;
     border: none
 }
 
@@ -501,4 +501,10 @@ hr {
 
 .item-block:last-child {
     border-bottom: none !important;
+}
+
+@media only screen and (max-width: 320px) {
+    .text-12 {
+        font-size: 10pt;
+    }
 }

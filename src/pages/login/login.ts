@@ -6,6 +6,7 @@ import { HomePage } from '../home/home';
 import { LoginService } from './login.service';
 import { UserProvider } from '../../providers/user/user';
 import { Storage } from '@ionic/storage';
+import { CadastroPage } from '../cadastro/cadastro';
 
 /**
  * Generated class for the LoginPage page.
@@ -45,6 +46,10 @@ export class LoginPage {
 	}
 
 	ionViewDidLoad() {
+	}
+
+	signup() {
+		this.navCtrl.push(CadastroPage);
 	}
 
 	login(login: Login) {

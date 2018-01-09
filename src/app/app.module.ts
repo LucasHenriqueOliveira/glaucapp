@@ -12,6 +12,9 @@ import { LoginPageModule } from '../pages/login/login.module';
 import { UserProvider } from '../providers/user/user';
 import { LoginService } from '../pages/login/login.service';
 import { HttpModule } from '@angular/http';
+import { CadastroPageModule } from '../pages/cadastro/cadastro.module';
+import { CadastroService } from '../pages/cadastro/cadastro.service';
+import { BrMaskerModule } from 'brmasker-ionic-3';
 
 @NgModule({
 	declarations: [
@@ -22,6 +25,8 @@ import { HttpModule } from '@angular/http';
 		HttpModule,
 		IntroPageModule,
 		LoginPageModule,
+		CadastroPageModule,
+		BrMaskerModule,
 		IonicModule.forRoot(MyApp, {
 			backButtonText: '',
 			backButtonIcon: 'arrow-round-back',
@@ -37,6 +42,7 @@ import { HttpModule } from '@angular/http';
 		StatusBar,
 		SplashScreen,
 		LoginService,
+		CadastroService,
 		UserProvider,
 		{ provide: ErrorHandler, useClass: IonicErrorHandler },
 		{ provide: LOCALE_ID, useValue: 'pt-BR' },
