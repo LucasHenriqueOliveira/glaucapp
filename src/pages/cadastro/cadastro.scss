@@ -12,5 +12,30 @@ page-cadastro {
         color: #BACFCA;
         font-weight: 400;
         margin-bottom: 20px;
-    }
+	}
+	
+	.label-option {
+		font-size: 12pt;
+    	color: #9C9C9C;
+	}
+
+	.no-padding-bottom {
+		padding-bottom: 0;
+	}
+
+	.option {
+		margin-top: 0;
+		padding-top: 5px !important;
+	}
+
+	.toggle-checked .toggle-icon {
+		background-color: #1abc9c !important;
+	}
+
+	.item-input.input-control input[type=text], 
+	.item-input.input-control input[type=password], 
+	.item-input.input-control input[type=tel], 
+	.item-input.input-control input[type=email] {
+		font-size: 12pt !important;
+	}
 }

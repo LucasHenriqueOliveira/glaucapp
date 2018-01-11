@@ -22,7 +22,7 @@
 			<ion-item class="item-input input-control">
 				<ion-input type="tel" formControlName="telefone" placeholder="Telefone" [brmasker]="{phone: true}"></ion-input>
 			</ion-item>
-			<div class="row">
+			<div class="row no-padding-bottom">
 				<div class="col-50 margin-negative-left">
 					<ion-item class="item-input input-control">
 						<ion-input type="password" formControlName="password" placeholder="Senha"></ion-input>
@@ -34,6 +34,10 @@
 					</ion-item>
 				</div>
 			</div>
+			<ion-item class="item-input input-control option">
+				<ion-label class="label-option"> Eu sou médico</ion-label>
+				<ion-toggle checked="false" formControlName="perfil"></ion-toggle>
+			</ion-item>
 
 			<div class="pull-right clearfix">
 				<button class="button button-outline button-light item-icon-right" (click)="signup(formSignUp.value)" [disabled]="!formSignUp.valid"

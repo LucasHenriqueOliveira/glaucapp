@@ -40,7 +40,8 @@ export class CadastroPage {
 			email: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
 			telefone: this.formBuilder.control('', [Validators.required]),
 			password: this.formBuilder.control('', [Validators.required]),
-			confirm_password: this.formBuilder.control('', [Validators.required])
+			confirm_password: this.formBuilder.control('', [Validators.required]),
+			perfil: this.formBuilder.control(false)
 		})
 	}
 

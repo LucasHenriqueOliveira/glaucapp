@@ -3,5 +3,6 @@ export class Cadastro {
                 public email: string, 
                 public telefone: string,
                 public password: string,
-                public confirm_password: string){}
+                public confirm_password: string,
+                public perfil: string){}
 }
