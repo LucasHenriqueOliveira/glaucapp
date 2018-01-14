@@ -15,6 +15,8 @@ import { HttpModule } from '@angular/http';
 import { CadastroPageModule } from '../pages/cadastro/cadastro.module';
 import { CadastroService } from '../pages/cadastro/cadastro.service';
 import { BrMaskerModule } from 'brmasker-ionic-3';
+import { InfoPageModule } from '../pages/info/info.module';
+import { HomePageModule } from '../pages/home/home.module';
 
 @NgModule({
 	declarations: [
@@ -26,7 +28,9 @@ import { BrMaskerModule } from 'brmasker-ionic-3';
 		IntroPageModule,
 		LoginPageModule,
 		CadastroPageModule,
+		InfoPageModule,
 		BrMaskerModule,
+		HomePageModule,
 		IonicModule.forRoot(MyApp, {
 			backButtonText: '',
 			backButtonIcon: 'arrow-round-back',

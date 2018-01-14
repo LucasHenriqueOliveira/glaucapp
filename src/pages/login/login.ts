@@ -7,6 +7,7 @@ import { LoginService } from './login.service';
 import { UserProvider } from '../../providers/user/user';
 import { Storage } from '@ionic/storage';
 import { CadastroPage } from '../cadastro/cadastro';
+import { InfoPage } from '../info/info';
 
 /**
  * Generated class for the LoginPage page.
@@ -17,32 +18,43 @@ import { CadastroPage } from '../cadastro/cadastro';
 
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+	selector: 'page-login',
+	templateUrl: 'login.html',
 })
 export class LoginPage {
 
 	private formLogin: FormGroup
-	
+
 	emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
 	dataToken: any = []
 	dataUser: any = []
 	dataForgotEmail: any = []
 
-	constructor(public navCtrl: NavController, 
-		public navParams: NavParams, 
-		private formBuilder: FormBuilder, 
+	constructor(public navCtrl: NavController,
+		public navParams: NavParams,
+		private formBuilder: FormBuilder,
 		public alertCtrl: AlertController,
 		public toastCtrl: ToastController,
 		public loadingCtrl: LoadingController,
 		private loginService: LoginService,
 		private userProvider: UserProvider,
 		private storage: Storage) {
-		
+
 		this.formLogin = this.formBuilder.group({
 			email: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
 			password: this.formBuilder.control('', [Validators.required])
 		})
+
+		this.storage.get('user').then((val) => {
+			console.log(val);
+			if (val) {
+				if (val.perfil || !val.login_default) {
+					this.navCtrl.push(HomePage);
+				} else {
+					this.navCtrl.push(InfoPage);
+				}
+			}
+		});
 	}
 
 	ionViewDidLoad() {
@@ -54,7 +66,7 @@ export class LoginPage {
 
 	login(login: Login) {
 		this.storage.clear();
-		let loader = this.loadingCtrl.create({content: "Aguarde..."});
+		let loader = this.loadingCtrl.create({ content: "Aguarde..." });
 		loader.present();
 
 		this.loginService.login(login).subscribe(data => {
@@ -65,8 +77,13 @@ export class LoginPage {
 				this.dataUser = res
 				this.storage.set('user', this.dataUser.data)
 				loader.dismiss()
-				this.navCtrl.push(HomePage);
-			  }, err => {
+				if (this.dataUser.data.perfil || !this.dataUser.data.login_default) {
+					this.navCtrl.push(HomePage);
+				} else {
+					this.navCtrl.push(InfoPage);
+				}
+
+			}, err => {
 				this.storage.clear();
 				loader.dismiss();
 				let toast = this.toastCtrl.create({
@@ -76,8 +93,8 @@ export class LoginPage {
 					cssClass: 'toast-error'
 				});
 				toast.present();
-			  })
-		  }, err => {
+			})
+		}, err => {
 			this.storage.clear();
 			loader.dismiss();
 			let toast = this.toastCtrl.create({
@@ -87,62 +104,62 @@ export class LoginPage {
 				cssClass: 'toast-error'
 			});
 			toast.present();
-		  })
+		})
 	}
 
 	esqueceuSenha() {
 		let prompt = this.alertCtrl.create({
-		  title: 'Esqueceu a senha?',
-		  message: "Entre com o seu e-mail cadastrado",
-		  inputs: [
-			{
-			  name: 'email',
-			  placeholder: 'Seu e-mail'
-			},
-		  ],
-		  buttons: [
-			{
-			  text: 'Cancelar'
-			},
-			{
-			  text: 'Enviar',
-			  handler: data => {
-				let loader = this.loadingCtrl.create({content: "Aguarde..."});
-				loader.present();
+			title: 'Esqueceu a senha?',
+			message: "Entre com o seu e-mail cadastrado",
+			inputs: [
+				{
+					name: 'email',
+					placeholder: 'Seu e-mail'
+				},
+			],
+			buttons: [
+				{
+					text: 'Cancelar'
+				},
+				{
+					text: 'Enviar',
+					handler: data => {
+						let loader = this.loadingCtrl.create({ content: "Aguarde..." });
+						loader.present();
 
-				this.loginService.esqueceuSenha(data).subscribe(res => {
-					this.dataForgotEmail = res
-					loader.dismiss();
-					if(this.dataForgotEmail.error) {
-						let toast = this.toastCtrl.create({
-							message: this.dataForgotEmail.message,
-							duration: 3000,
-							position: 'middle',
-							cssClass: 'toast-error'
-						});
-						toast.present();
-					} else {
-						let toast = this.toastCtrl.create({
-							message: "Enviamos um email com informações da nova senha!",
-							duration: 3000,
-							position: 'middle',
-							cssClass: 'toast-success'
-						});
-						toast.present();
+						this.loginService.esqueceuSenha(data).subscribe(res => {
+							this.dataForgotEmail = res
+							loader.dismiss();
+							if (this.dataForgotEmail.error) {
+								let toast = this.toastCtrl.create({
+									message: this.dataForgotEmail.message,
+									duration: 3000,
+									position: 'middle',
+									cssClass: 'toast-error'
+								});
+								toast.present();
+							} else {
+								let toast = this.toastCtrl.create({
+									message: "Enviamos um email com informações da nova senha!",
+									duration: 3000,
+									position: 'middle',
+									cssClass: 'toast-success'
+								});
+								toast.present();
+							}
+						}, err => {
+							loader.dismiss();
+							let toast = this.toastCtrl.create({
+								message: 'Erro ao recuperar a senha do usuário!',
+								duration: 3000,
+								position: 'middle',
+								cssClass: 'toast-error'
+							});
+							toast.present();
+						})
 					}
-				  }, err => {
-					loader.dismiss();
-					let toast = this.toastCtrl.create({
-						message: 'Erro ao recuperar a senha do usuário!',
-						duration: 3000,
-						position: 'middle',
-						cssClass: 'toast-error'
-					});
-					toast.present();
-				  })
-			  }
-			}
-		  ]
+				}
+			]
 		});
 		prompt.present();
 	}

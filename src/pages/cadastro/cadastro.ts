@@ -6,6 +6,7 @@ import { CadastroService } from "./cadastro.service";
 import { UserProvider } from "../../providers/user/user";
 import { Storage } from '@ionic/storage';
 import { HomePage } from "../home/home";
+import { InfoPage } from '../info/info';
 
 /**
  * Generated class for the CadastroPage page.
@@ -64,7 +65,12 @@ export class CadastroPage {
 				this.dataUser = res
 				this.storage.set('user', this.dataUser.data)
 				loader.dismiss()
-				this.navCtrl.push(HomePage);
+				if (signup.perfil) {
+					this.navCtrl.push(HomePage);
+				} else {
+					this.navCtrl.push(InfoPage);
+				}
+				
 			}, err => {
 				this.storage.clear();
 				loader.dismiss();

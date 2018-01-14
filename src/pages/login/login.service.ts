@@ -24,5 +24,4 @@ export class LoginService {
          return this.http.post(`${this.constants.api}/usuario/reset`, JSON.stringify(email), new RequestOptions({headers: headers}))
             .map(response => response.json())
     }
-
 }
